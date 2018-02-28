@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BultinViewDlg" widgetVar="BultinViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewBultinTitle}">
+            <h:form id="BultinViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{bultinController.selected != null}">
+                        <h:outputText value="#{bundle.ViewBultinLabel_id}"/>
+                        <h:outputText value="#{bultinController.selected.id}" title="#{bundle.ViewBultinTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewBultinLabel_societe}"/>
+                        <h:outputText value="#{bultinController.selected.societe}" title="#{bundle.ViewBultinTitle_societe}"/>
+                        <h:outputText value="#{bundle.ViewBultinLabel_datedeclar}"/>
+                        <h:outputText value="#{bultinController.selected.datedeclar}" title="#{bundle.ViewBultinTitle_datedeclar}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewBultinLabel_vent}"/>
+                        <h:outputText value="#{bultinController.selected.vent}" title="#{bundle.ViewBultinTitle_vent}"/>
+                        <h:outputText value="#{bundle.ViewBultinLabel_achat}"/>
+                        <h:outputText value="#{bultinController.selected.achat}" title="#{bundle.ViewBultinTitle_achat}"/>
+                        <h:outputText value="#{bundle.ViewBultinLabel_facteurelec}"/>
+                        <h:outputText value="#{bultinController.selected.facteurelec}" title="#{bundle.ViewBultinTitle_facteurelec}"/>
+                        <h:outputText value="#{bundle.ViewBultinLabel_facteureau}"/>
+                        <h:outputText value="#{bultinController.selected.facteureau}" title="#{bundle.ViewBultinTitle_facteureau}"/>
+                        <h:outputText value="#{bundle.ViewBultinLabel_facteurinter}"/>
+                        <h:outputText value="#{bultinController.selected.facteurinter}" title="#{bundle.ViewBultinTitle_facteurinter}"/>
+                        <h:outputText value="#{bundle.ViewBultinLabel_autre}"/>
+                        <h:outputText value="#{bultinController.selected.autre}" title="#{bundle.ViewBultinTitle_autre}"/>
+                        <h:outputText value="#{bundle.ViewBultinLabel_total}"/>
+                        <h:outputText value="#{bultinController.selected.total}" title="#{bundle.ViewBultinTitle_total}"/>
+                        <h:outputText value="#{bundle.ViewBultinLabel_dernierdel}"/>
+                        <h:outputText value="#{bultinController.selected.dernierdel}" title="#{bundle.ViewBultinTitle_dernierdel}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="BultinViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

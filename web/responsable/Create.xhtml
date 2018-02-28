@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ResponsableCreateDlg" widgetVar="ResponsableCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateResponsableTitle}">
+            <h:form id="ResponsableCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{responsableController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateResponsableLabel_login}" for="login" />
+                        <p:inputText id="login" value="#{responsableController.selected.login}" title="#{bundle.CreateResponsableTitle_login}" />
+                        <p:outputLabel value="#{bundle.CreateResponsableLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{responsableController.selected.password}" title="#{bundle.CreateResponsableTitle_password}" />
+                        <p:outputLabel value="#{bundle.CreateResponsableLabel_droit}" for="droit" />
+                        <p:inputText id="droit" value="#{responsableController.selected.droit}" title="#{bundle.CreateResponsableTitle_droit}" />
+                        <p:outputLabel value="#{bundle.CreateResponsableLabel_cin}" for="cin" />
+                        <p:inputText id="cin" value="#{responsableController.selected.cin}" title="#{bundle.CreateResponsableTitle_cin}" />
+                        <p:outputLabel value="#{bundle.CreateResponsableLabel_societe}" for="societe" />
+                        <p:selectOneMenu id="societe" value="#{responsableController.selected.societe}" >
+                            <f:selectItems value="#{societeController.itemsAvailableSelectOne}"
+                                           var="societeItem"
+                                           itemValue="#{societeItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateResponsableLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{responsableController.selected.nom}" title="#{bundle.CreateResponsableTitle_nom}" />
+                        <p:outputLabel value="#{bundle.CreateResponsableLabel_tele}" for="tele" />
+                        <p:inputText id="tele" value="#{responsableController.selected.tele}" title="#{bundle.CreateResponsableTitle_tele}" />
+                        <p:outputLabel value="#{bundle.CreateResponsableLabel_compte}" for="compte" />
+                        <p:inputText id="compte" value="#{responsableController.selected.compte}" title="#{bundle.CreateResponsableTitle_compte}" />
+                        <p:outputLabel value="#{bundle.CreateResponsableLabel_datenaiss}" for="datenaiss" />
+                        <p:calendar id="datenaiss" pattern="MM/dd/yyyy" value="#{responsableController.selected.datenaiss}" title="#{bundle.EditResponsableTitle_datenaiss}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateResponsableLabel_datembauch}" for="datembauch" />
+                        <p:calendar id="datembauch" pattern="MM/dd/yyyy" value="#{responsableController.selected.datembauch}" title="#{bundle.EditResponsableTitle_datembauch}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateResponsableLabel_metier}" for="metier" />
+                        <p:inputText id="metier" value="#{responsableController.selected.metier}" title="#{bundle.CreateResponsableTitle_metier}" />
+                        <p:outputLabel value="#{bundle.CreateResponsableLabel_salairbase}" for="salairbase" />
+                        <p:inputText id="salairbase" value="#{responsableController.selected.salairbase}" title="#{bundle.CreateResponsableTitle_salairbase}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{responsableController.create}" value="#{bundle.Save}" update="display,:ResponsableListForm:datalist,:growl" oncomplete="handleSubmit(args,'ResponsableCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ResponsableCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

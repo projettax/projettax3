@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TrancheIrEditDlg" widgetVar="TrancheIrEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTrancheIrTitle}">
+            <h:form id="TrancheIrEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{trancheIrController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTrancheIrLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{trancheIrController.selected.id}" title="#{bundle.EditTrancheIrTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditTrancheIrLabel_minim}" for="minim" />
+                        <p:inputText id="minim" value="#{trancheIrController.selected.minim}" title="#{bundle.EditTrancheIrTitle_minim}" />
+                        <p:outputLabel value="#{bundle.EditTrancheIrLabel_maxim}" for="maxim" />
+                        <p:inputText id="maxim" value="#{trancheIrController.selected.maxim}" title="#{bundle.EditTrancheIrTitle_maxim}" />
+                        <p:outputLabel value="#{bundle.EditTrancheIrLabel_taux}" for="taux" />
+                        <p:inputText id="taux" value="#{trancheIrController.selected.taux}" title="#{bundle.EditTrancheIrTitle_taux}" />
+                        <p:outputLabel value="#{bundle.EditTrancheIrLabel_ir}" for="ir" />
+                        <p:selectOneMenu id="ir" value="#{trancheIrController.selected.ir}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{irController.itemsAvailableSelectOne}"
+                                           var="irItem"
+                                           itemValue="#{irItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{trancheIrController.update}" value="#{bundle.Save}" update="display,:TrancheIrListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TrancheIrEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TrancheIrEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

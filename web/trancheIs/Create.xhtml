@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TrancheIsCreateDlg" widgetVar="TrancheIsCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTrancheIsTitle}">
+            <h:form id="TrancheIsCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{trancheIsController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTrancheIsLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{trancheIsController.selected.id}" title="#{bundle.CreateTrancheIsTitle_id}" />
+                        <p:outputLabel value="#{bundle.CreateTrancheIsLabel_minim}" for="minim" />
+                        <p:inputText id="minim" value="#{trancheIsController.selected.minim}" title="#{bundle.CreateTrancheIsTitle_minim}" />
+                        <p:outputLabel value="#{bundle.CreateTrancheIsLabel_maxim}" for="maxim" />
+                        <p:inputText id="maxim" value="#{trancheIsController.selected.maxim}" title="#{bundle.CreateTrancheIsTitle_maxim}" />
+                        <p:outputLabel value="#{bundle.CreateTrancheIsLabel_taux}" for="taux" />
+                        <p:inputText id="taux" value="#{trancheIsController.selected.taux}" title="#{bundle.CreateTrancheIsTitle_taux}" />
+                        <p:outputLabel value="#{bundle.CreateTrancheIsLabel_is}" for="is" />
+                        <p:selectOneMenu id="is" value="#{trancheIsController.selected.is}" >
+                            <f:selectItems value="#{isController.itemsAvailableSelectOne}"
+                                           var="isItem"
+                                           itemValue="#{isItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{trancheIsController.create}" value="#{bundle.Save}" update="display,:TrancheIsListForm:datalist,:growl" oncomplete="handleSubmit(args,'TrancheIsCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TrancheIsCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

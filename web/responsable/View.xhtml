@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ResponsableViewDlg" widgetVar="ResponsableViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewResponsableTitle}">
+            <h:form id="ResponsableViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{responsableController.selected != null}">
+                        <h:outputText value="#{bundle.ViewResponsableLabel_login}"/>
+                        <h:outputText value="#{responsableController.selected.login}" title="#{bundle.ViewResponsableTitle_login}"/>
+                        <h:outputText value="#{bundle.ViewResponsableLabel_password}"/>
+                        <h:outputText value="#{responsableController.selected.password}" title="#{bundle.ViewResponsableTitle_password}"/>
+                        <h:outputText value="#{bundle.ViewResponsableLabel_droit}"/>
+                        <h:outputText value="#{responsableController.selected.droit}" title="#{bundle.ViewResponsableTitle_droit}"/>
+                        <h:outputText value="#{bundle.ViewResponsableLabel_cin}"/>
+                        <h:outputText value="#{responsableController.selected.cin}" title="#{bundle.ViewResponsableTitle_cin}"/>
+                        <h:outputText value="#{bundle.ViewResponsableLabel_societe}"/>
+                        <h:outputText value="#{responsableController.selected.societe}" title="#{bundle.ViewResponsableTitle_societe}"/>
+                        <h:outputText value="#{bundle.ViewResponsableLabel_nom}"/>
+                        <h:outputText value="#{responsableController.selected.nom}" title="#{bundle.ViewResponsableTitle_nom}"/>
+                        <h:outputText value="#{bundle.ViewResponsableLabel_tele}"/>
+                        <h:outputText value="#{responsableController.selected.tele}" title="#{bundle.ViewResponsableTitle_tele}"/>
+                        <h:outputText value="#{bundle.ViewResponsableLabel_compte}"/>
+                        <h:outputText value="#{responsableController.selected.compte}" title="#{bundle.ViewResponsableTitle_compte}"/>
+                        <h:outputText value="#{bundle.ViewResponsableLabel_datenaiss}"/>
+                        <h:outputText value="#{responsableController.selected.datenaiss}" title="#{bundle.ViewResponsableTitle_datenaiss}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewResponsableLabel_datembauch}"/>
+                        <h:outputText value="#{responsableController.selected.datembauch}" title="#{bundle.ViewResponsableTitle_datembauch}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewResponsableLabel_metier}"/>
+                        <h:outputText value="#{responsableController.selected.metier}" title="#{bundle.ViewResponsableTitle_metier}"/>
+                        <h:outputText value="#{bundle.ViewResponsableLabel_salairbase}"/>
+                        <h:outputText value="#{responsableController.selected.salairbase}" title="#{bundle.ViewResponsableTitle_salairbase}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ResponsableViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

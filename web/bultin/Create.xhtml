@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BultinCreateDlg" widgetVar="BultinCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateBultinTitle}">
+            <h:form id="BultinCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{bultinController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateBultinLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{bultinController.selected.id}" title="#{bundle.CreateBultinTitle_id}" />
+                        <p:outputLabel value="#{bundle.CreateBultinLabel_societe}" for="societe" />
+                        <p:selectOneMenu id="societe" value="#{bultinController.selected.societe}" >
+                            <f:selectItems value="#{societeController.itemsAvailableSelectOne}"
+                                           var="societeItem"
+                                           itemValue="#{societeItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateBultinLabel_datedeclar}" for="datedeclar" />
+                        <p:calendar id="datedeclar" pattern="MM/dd/yyyy" value="#{bultinController.selected.datedeclar}" title="#{bundle.EditBultinTitle_datedeclar}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateBultinLabel_vent}" for="vent" />
+                        <p:inputText id="vent" value="#{bultinController.selected.vent}" title="#{bundle.CreateBultinTitle_vent}" />
+                        <p:outputLabel value="#{bundle.CreateBultinLabel_achat}" for="achat" />
+                        <p:inputText id="achat" value="#{bultinController.selected.achat}" title="#{bundle.CreateBultinTitle_achat}" />
+                        <p:outputLabel value="#{bundle.CreateBultinLabel_facteurelec}" for="facteurelec" />
+                        <p:inputText id="facteurelec" value="#{bultinController.selected.facteurelec}" title="#{bundle.CreateBultinTitle_facteurelec}" />
+                        <p:outputLabel value="#{bundle.CreateBultinLabel_facteureau}" for="facteureau" />
+                        <p:inputText id="facteureau" value="#{bultinController.selected.facteureau}" title="#{bundle.CreateBultinTitle_facteureau}" />
+                        <p:outputLabel value="#{bundle.CreateBultinLabel_facteurinter}" for="facteurinter" />
+                        <p:inputText id="facteurinter" value="#{bultinController.selected.facteurinter}" title="#{bundle.CreateBultinTitle_facteurinter}" />
+                        <p:outputLabel value="#{bundle.CreateBultinLabel_autre}" for="autre" />
+                        <p:inputText id="autre" value="#{bultinController.selected.autre}" title="#{bundle.CreateBultinTitle_autre}" />
+                        <p:outputLabel value="#{bundle.CreateBultinLabel_total}" for="total" />
+                        <p:inputText id="total" value="#{bultinController.selected.total}" title="#{bundle.CreateBultinTitle_total}" />
+                        <p:outputLabel value="#{bundle.CreateBultinLabel_dernierdel}" for="dernierdel" />
+                        <p:calendar id="dernierdel" pattern="MM/dd/yyyy" value="#{bultinController.selected.dernierdel}" title="#{bundle.EditBultinTitle_dernierdel}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{bultinController.create}" value="#{bundle.Save}" update="display,:BultinListForm:datalist,:growl" oncomplete="handleSubmit(args,'BultinCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="BultinCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

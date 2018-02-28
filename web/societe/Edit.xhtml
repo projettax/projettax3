@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SocieteEditDlg" widgetVar="SocieteEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditSocieteTitle}">
+            <h:form id="SocieteEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{societeController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditSocieteLabel_idfsc}" for="idfsc" />
+                        <p:inputText id="idfsc" value="#{societeController.selected.idfsc}" title="#{bundle.EditSocieteTitle_idfsc}" />
+                        <p:outputLabel value="#{bundle.EditSocieteLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{societeController.selected.nom}" title="#{bundle.EditSocieteTitle_nom}" />
+                        <p:outputLabel value="#{bundle.EditSocieteLabel_dgi}" for="dgi" />
+                        <p:selectOneMenu id="dgi" value="#{societeController.selected.dgi}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{dgiController.itemsAvailableSelectOne}"
+                                           var="dgiItem"
+                                           itemValue="#{dgiItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditSocieteLabel_service}" for="service" />
+                        <p:inputText id="service" value="#{societeController.selected.service}" title="#{bundle.EditSocieteTitle_service}" />
+                        <p:outputLabel value="#{bundle.EditSocieteLabel_penalite}" for="penalite" />
+                        <p:selectOneMenu id="penalite" value="#{societeController.selected.penalite}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{penaliteController.itemsAvailableSelectOne}"
+                                           var="penaliteItem"
+                                           itemValue="#{penaliteItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditSocieteLabel_regime}" for="regime" />
+                        <p:inputText id="regime" value="#{societeController.selected.regime}" title="#{bundle.EditSocieteTitle_regime}" />
+                        <p:outputLabel value="#{bundle.EditSocieteLabel_creditva}" for="creditva" />
+                        <p:inputText id="creditva" value="#{societeController.selected.creditva}" title="#{bundle.EditSocieteTitle_creditva}" />
+                        <p:outputLabel value="#{bundle.EditSocieteLabel_tvadue}" for="tvadue" />
+                        <p:inputText id="tvadue" value="#{societeController.selected.tvadue}" title="#{bundle.EditSocieteTitle_tvadue}" />
+                        <p:outputLabel value="#{bundle.EditSocieteLabel_dateouvertur}" for="dateouvertur" />
+                        <p:calendar id="dateouvertur" pattern="MM/dd/yyyy" value="#{societeController.selected.dateouvertur}" title="#{bundle.EditSocieteTitle_dateouvertur}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditSocieteLabel_adresse}" for="adresse" />
+                        <p:inputText id="adresse" value="#{societeController.selected.adresse}" title="#{bundle.EditSocieteTitle_adresse}" />
+                        <p:outputLabel value="#{bundle.EditSocieteLabel_compte}" for="compte" />
+                        <p:inputText id="compte" value="#{societeController.selected.compte}" title="#{bundle.EditSocieteTitle_compte}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{societeController.update}" value="#{bundle.Save}" update="display,:SocieteListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SocieteEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SocieteEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

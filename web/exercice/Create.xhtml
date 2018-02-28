@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ExerciceCreateDlg" widgetVar="ExerciceCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateExerciceTitle}">
+            <h:form id="ExerciceCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{exerciceController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateExerciceLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{exerciceController.selected.id}" title="#{bundle.CreateExerciceTitle_id}" />
+                        <p:outputLabel value="#{bundle.CreateExerciceLabel_societe}" for="societe" />
+                        <p:selectOneMenu id="societe" value="#{exerciceController.selected.societe}" >
+                            <f:selectItems value="#{societeController.itemsAvailableSelectOne}"
+                                           var="societeItem"
+                                           itemValue="#{societeItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateExerciceLabel_prix}" for="prix" />
+                        <p:inputText id="prix" value="#{exerciceController.selected.prix}" title="#{bundle.CreateExerciceTitle_prix}" />
+                        <p:outputLabel value="#{bundle.CreateExerciceLabel_type}" for="type" />
+                        <p:inputText id="type" value="#{exerciceController.selected.type}" title="#{bundle.CreateExerciceTitle_type}" />
+                        <p:outputLabel value="#{bundle.CreateExerciceLabel_datelivr}" for="datelivr" />
+                        <p:calendar id="datelivr" pattern="MM/dd/yyyy" value="#{exerciceController.selected.datelivr}" title="#{bundle.EditExerciceTitle_datelivr}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateExerciceLabel_libel}" for="libel" />
+                        <p:inputText id="libel" value="#{exerciceController.selected.libel}" title="#{bundle.CreateExerciceTitle_libel}" />
+                        <p:outputLabel value="#{bundle.CreateExerciceLabel_tva}" for="tva" />
+                        <p:inputText id="tva" value="#{exerciceController.selected.tva}" title="#{bundle.CreateExerciceTitle_tva}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{exerciceController.create}" value="#{bundle.Save}" update="display,:ExerciceListForm:datalist,:growl" oncomplete="handleSubmit(args,'ExerciceCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ExerciceCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

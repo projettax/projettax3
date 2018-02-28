@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="IrViewDlg" widgetVar="IrViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewIrTitle}">
+            <h:form id="IrViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{irController.selected != null}">
+                        <h:outputText value="#{bundle.ViewIrLabel_id}"/>
+                        <h:outputText value="#{irController.selected.id}" title="#{bundle.ViewIrTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewIrLabel_dateapp}"/>
+                        <h:outputText value="#{irController.selected.dateapp}" title="#{bundle.ViewIrTitle_dateapp}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewIrLabel_dgi}"/>
+                        <h:outputText value="#{irController.selected.dgi}" title="#{bundle.ViewIrTitle_dgi}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="IrViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

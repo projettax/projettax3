@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BultinIrEditDlg" widgetVar="BultinIrEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditBultinIrTitle}">
+            <h:form id="BultinIrEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{bultinIrController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditBultinIrLabel_societe}" for="societe" />
+                        <p:selectOneMenu id="societe" value="#{bultinIrController.selected.societe}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{societeController.itemsAvailableSelectOne}"
+                                           var="societeItem"
+                                           itemValue="#{societeItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditBultinIrLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{bultinIrController.selected.id}" title="#{bundle.EditBultinIrTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditBultinIrLabel_salaires}" for="salaires" />
+                        <p:inputText id="salaires" value="#{bultinIrController.selected.salaires}" title="#{bundle.EditBultinIrTitle_salaires}" />
+                        <p:outputLabel value="#{bundle.EditBultinIrLabel_autres}" for="autres" />
+                        <p:inputText id="autres" value="#{bultinIrController.selected.autres}" title="#{bundle.EditBultinIrTitle_autres}" />
+                        <p:outputLabel value="#{bundle.EditBultinIrLabel_totale}" for="totale" />
+                        <p:inputText id="totale" value="#{bultinIrController.selected.totale}" title="#{bundle.EditBultinIrTitle_totale}" />
+                        <p:outputLabel value="#{bundle.EditBultinIrLabel_datedeclar}" for="datedeclar" />
+                        <p:calendar id="datedeclar" pattern="MM/dd/yyyy" value="#{bultinIrController.selected.datedeclar}" title="#{bundle.EditBultinIrTitle_datedeclar}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditBultinIrLabel_dernierdel}" for="dernierdel" />
+                        <p:calendar id="dernierdel" pattern="MM/dd/yyyy" value="#{bultinIrController.selected.dernierdel}" title="#{bundle.EditBultinIrTitle_dernierdel}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{bultinIrController.update}" value="#{bundle.Save}" update="display,:BultinIrListForm:datalist,:growl" oncomplete="handleSubmit(args, 'BultinIrEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="BultinIrEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
